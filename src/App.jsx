@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
+// rerendering happens of component whenever its or its parent's state changes. buttons are getting rerendered because of App component
+// we want to reduce rerendering to only for DisplayCount.
 function App() {
   const [count, setCount] = useState(0);
 
@@ -23,22 +25,22 @@ function DisplayCounter({count, setCount}){
   );
 }
 
-function Buttons({count, setCount}){
+function Buttons({setCount}){
   return(
     <div className='flex justify-between'>
-      <IncreaseButton count={count} setCount={setCount} ></IncreaseButton>
-      <DecreaseButton count={count} setCount={setCount}></DecreaseButton>
+      <IncreaseButton setCount={setCount} ></IncreaseButton>
+      <DecreaseButton setCount={setCount}></DecreaseButton>
     </div>
   );
 }
 
-function IncreaseButton({count, setCount}){
+function IncreaseButton({setCount}){
   return(
   <button className='bg-red-500 p-1 rounded-sm text-white' onClick={() => setCount((c) => c+1)}>Increase</button>
   );
 }
 
-function DecreaseButton({count, setCount}){
+function DecreaseButton({setCount}){
   return(
   <button className='bg-red-500 p-1 rounded-sm text-white' onClick={() => setCount((c) => c-1)}>decrease</button>
   );
